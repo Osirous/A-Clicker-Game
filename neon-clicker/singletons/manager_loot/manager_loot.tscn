@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://refblntcmr08"]
+
+[ext_resource type="Script" path="res://scripts/manager_loot.gd" id="1_ac8lu"]
+
+[node name="ManagerGoblinEars" type="Node"]
+script = ExtResource("1_ac8lu")

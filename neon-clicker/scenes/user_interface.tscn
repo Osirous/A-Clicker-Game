@@ -1,0 +1,183 @@
+[gd_scene load_steps=21 format=3 uid="uid://yacnmffb5m8i"]
+
+[ext_resource type="PackedScene" uid="uid://dn52d2iodo6am" path="res://scenes/Opening.tscn" id="1_oo7c5"]
+[ext_resource type="PackedScene" uid="uid://refblntcmr08" path="res://singletons/manager_loot/manager_loot.tscn" id="1_ygkol"]
+[ext_resource type="PackedScene" uid="uid://qegsplm6ysdf" path="res://components/label_goblin_ears.tscn" id="2_6dqsc"]
+[ext_resource type="Script" path="res://scripts/opening.gd" id="2_y7los"]
+[ext_resource type="Texture2D" uid="uid://e4tqpp3cenr2" path="res://Assets/enemy_hd/Goblin-HD.png" id="3_ik7mf"]
+[ext_resource type="PackedScene" uid="uid://mjbcr5wq06id" path="res://components/label_enemy_health.tscn" id="3_qiyqg"]
+[ext_resource type="Texture2D" uid="uid://dcg1sfikfi6sm" path="res://Assets/opening/00014-1081954571.png" id="3_y7los"]
+[ext_resource type="PackedScene" uid="uid://s2oo8rdcojpp" path="res://components/attack.tscn" id="3_y8uaj"]
+[ext_resource type="Texture2D" uid="uid://du1udjvuhl6fw" path="res://Assets/enemy_hd/Assassin-HD.png" id="4_nlsvg"]
+[ext_resource type="Script" path="res://scripts/start_button.gd" id="4_oo7c5"]
+[ext_resource type="Texture2D" uid="uid://b6rpcbxfpwrrl" path="res://Assets/enemy_hd/Air Elemental-HD.png" id="5_b7meb"]
+[ext_resource type="Texture2D" uid="uid://11blfem402qy" path="res://Assets/enemy_hd/Badger-HD.png" id="6_plbj1"]
+[ext_resource type="Script" path="res://scripts/player_data.gd" id="7_avjao"]
+[ext_resource type="Texture2D" uid="uid://bkad2gvxg638" path="res://Assets/enemy_hd/Animated Armor-HD.png" id="8_26lg3"]
+[ext_resource type="Texture2D" uid="uid://c1wr8akcot0hr" path="res://Assets/enemy_hd/Banshee-HD.png" id="9_hbrai"]
+[ext_resource type="Texture2D" uid="uid://g6tvy4qc6v7c" path="res://Assets/enemy_hd/Succubus-HD.jpg" id="10_w274g"]
+[ext_resource type="Texture2D" uid="uid://q8scpnmioa6d" path="res://Assets/enemy_hd/Valkyrie-HD.jpg" id="11_pg5pm"]
+[ext_resource type="Texture2D" uid="uid://b2qeo7wk7tlhg" path="res://Assets/enemy_hd/Red Dragon-HD.png" id="12_lf5ws"]
+[ext_resource type="Script" path="res://scripts/advance_button.gd" id="18_ctk3g"]
+[ext_resource type="Script" path="res://scripts/retreat_button.gd" id="19_b5wtg"]
+
+[node name="UserInterface" type="Node"]
+metadata/_edit_vertical_guides_ = [415.0, 1920.0, 1507.0, 963.0, 313.0, 105.0, 1613.0]
+metadata/_edit_horizontal_guides_ = [1032.0]
+
+[node name="Opening" parent="." instance=ExtResource("1_oo7c5")]
+script = ExtResource("2_y7los")
+
+[node name="Opening Image" type="Sprite2D" parent="Opening"]
+position = Vector2(899, 639)
+scale = Vector2(2.8385, 2.45645)
+texture = ExtResource("3_y7los")
+
+[node name="Start_Button" type="Button" parent="Opening"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 660.0
+offset_top = 868.0
+offset_right = -667.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 98
+text = "Start"
+script = ExtResource("4_oo7c5")
+
+[node name="ManagerLoot" parent="." instance=ExtResource("1_ygkol")]
+
+[node name="LabelLoot" parent="." instance=ExtResource("2_6dqsc")]
+anchors_preset = 9
+anchor_right = 0.0
+offset_top = 5.0
+offset_right = 414.0
+grow_horizontal = 1
+
+[node name="LabelEnemyStats" parent="." instance=ExtResource("3_qiyqg")]
+anchors_preset = 11
+anchor_left = 1.0
+offset_left = -414.0
+offset_top = 1.0
+grow_horizontal = 0
+
+[node name="Fight Enemies" type="Node" parent="."]
+
+[node name="Goblin-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("3_ik7mf")
+
+[node name="Assassin-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("4_nlsvg")
+
+[node name="Air Elemental-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("5_b7meb")
+
+[node name="Badger-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("6_plbj1")
+
+[node name="Animated Armor-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("8_26lg3")
+
+[node name="Banshee-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("9_hbrai")
+
+[node name="Succubus-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("10_w274g")
+
+[node name="Valkyrie-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("11_pg5pm")
+
+[node name="Red Dragon-HD" type="Sprite2D" parent="Fight Enemies"]
+visible = false
+position = Vector2(962.25, 540.25)
+scale = Vector2(0.523193, 0.523193)
+texture = ExtResource("12_lf5ws")
+
+[node name="Attack" parent="Fight Enemies" instance=ExtResource("3_y8uaj")]
+visible = false
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Attack!!"
+
+[node name="AttackTimer" type="Timer" parent="Fight Enemies/Attack"]
+wait_time = 0.05
+
+[node name="FloatingDamageOrigin" type="Node2D" parent="Fight Enemies"]
+position = Vector2(960, 494)
+
+[node name="FloatingTextOrigin" type="Node2D" parent="Fight Enemies"]
+position = Vector2(960, 846)
+
+[node name="FloatingRewardOrigin" type="Node2D" parent="Fight Enemies"]
+position = Vector2(960, 283)
+
+[node name="FloatingKillOrigin" type="Node2D" parent="Fight Enemies"]
+position = Vector2(960, 383)
+
+[node name="AdvanceButton" type="Button" parent="Fight Enemies"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.84
+anchor_top = 0.87
+anchor_right = 0.942
+anchor_bottom = 0.956
+offset_left = 2.19995
+offset_top = -9.6001
+offset_right = 9.35999
+offset_bottom = -2.47998
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "Advance"
+script = ExtResource("18_ctk3g")
+
+[node name="RetreatButton" type="Button" parent="Fight Enemies"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.84
+anchor_top = 0.87
+anchor_right = 0.942
+anchor_bottom = 0.956
+offset_left = -1504.8
+offset_top = -9.6001
+offset_right = -1497.64
+offset_bottom = -2.47998
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "Retreat"
+script = ExtResource("19_b5wtg")
+
+[node name="PlayerData" type="Node" parent="."]
+script = ExtResource("7_avjao")
+
+[connection signal="pressed" from="Opening/Start_Button" to="Opening/Start_Button" method="_on_pressed"]
+[connection signal="timeout" from="Fight Enemies/Attack/AttackTimer" to="Fight Enemies/Attack" method="_on_attack_timer_timeout"]
+[connection signal="pressed" from="Fight Enemies/AdvanceButton" to="Fight Enemies/AdvanceButton" method="_on_pressed"]
+[connection signal="pressed" from="Fight Enemies/RetreatButton" to="Fight Enemies/RetreatButton" method="_on_pressed"]

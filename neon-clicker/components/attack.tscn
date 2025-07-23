@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://s2oo8rdcojpp"]
+
+[ext_resource type="Script" path="res://scripts/attack.gd" id="1_epfhr"]
+
+[node name="Attack" type="Button"]
+custom_minimum_size = Vector2(320, 80)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -121.0
+offset_right = 80.0
+offset_bottom = -81.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Attack Goblin"
+script = ExtResource("1_epfhr")
