@@ -19,7 +19,7 @@ func get_enemy_kills(enemy_name: String) -> int:
 
 ## Defines our current enemy
 var current_enemy_key : String = "goblin"  # Start with first enemy
-var enemy_progression : Array = ["goblin", "badger", "assassin", "air_elemental", "animated_armor", "banshee", "succubus", "valkyrie", "red_dragon"]  # Define your order
+var enemy_progression : Array = ["goblin", "badger", "assassin", "air_elemental", "animated_armor", "banshee", "succubus", "valkyrie", "red_dragon"]  # Define enemy order
 
 signal enemy_changed(current_enemy_key)
 

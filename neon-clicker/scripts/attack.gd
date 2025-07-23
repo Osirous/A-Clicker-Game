@@ -107,6 +107,6 @@ func on_death() -> void:
 	
 	if ManagerLoot.ref.on_successful_loot():
 		var drops : int = randi_range(min_drops, max_drops)
-		ManagerLoot.ref.create_goblinEars(drops)
+		ManagerLoot.ref.create_loot(current_enemy_data.loot_name, drops)
 		if drops == 0:
 			FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)

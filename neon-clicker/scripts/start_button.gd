@@ -1,6 +1,5 @@
 extends Button
 
-
 func _on_ready() -> void:
 	pressed.connect(_on_pressed)
 

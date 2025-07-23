@@ -7,11 +7,23 @@ func _init() -> void:
 	if not ref : ref = self
 	else : queue_free()
 
-signal goblinEars_updated
-signal goblinEars_created(quantity : int)
-signal goblinEars_spent(quantity : int)
+signal loot_updated
+signal loot_created(quantity : int)
+signal loot_spent(quantity : int)
 
-var _goblinEars : int = 0
+var _loot : Dictionary = {}
+
+const ALL_LOOT_TYPES_IN_DISPLAY_ORDER : PackedStringArray = [
+	"Goblin Ears",
+	"Badger Claws",
+	"Gold Coins",
+	"Elemental Core",
+	"Scrap Metal",
+	"Ghostly Essence",
+	"Succubus Tails",
+	"Valkyrie Feathers",
+	"Dragon Scales",
+]
 
 func on_successful_loot() -> bool:
 	var min_loot_chance : int = 1
@@ -22,33 +34,37 @@ func on_successful_loot() -> bool:
 		return true
 	return false
 
-func get_goblinEars() -> int:
-	return _goblinEars
-	
+func get_loot(enemy_name: String) -> int:
+	return _loot.get(enemy_name, 0)
 
-func create_goblinEars(quantity : int) -> void:
+
+func create_loot(enemy_name: String, quantity : int) -> void:
 	if quantity <= 0 : return
 	
-	_goblinEars += quantity
+	if enemy_name in _loot:
+		_loot[enemy_name] += quantity
+	else:
+		_loot[enemy_name] = quantity
 	
-	goblinEars_created.emit(quantity)
-	goblinEars_updated.emit()
+	loot_created.emit(quantity)
+	loot_updated.emit()
 
-func can_spend(quantity : int) -> bool:
+func can_spend(enemy_name: String, quantity : int) -> bool:
 	if quantity <= 0 : return false
 	
-	if quantity > _goblinEars : return false
+	if quantity > get_loot(enemy_name) : return false
 	
 	return true
 
-func spend_goblinEars(quantity : int) -> Error:
+func spend_loot(enemy_name: String, quantity : int) -> Error:
 	if quantity < 0 : return Error.FAILED
 	
-	if quantity > _goblinEars : return Error.FAILED
+	if quantity > get_loot(enemy_name) : return Error.FAILED
 	
-	_goblinEars -= quantity
+	if enemy_name in _loot:
+		_loot[enemy_name] -= quantity
 	
-	goblinEars_spent.emit(quantity)
-	goblinEars_updated.emit()
+	loot_spent.emit(quantity)
+	loot_updated.emit()
 	
 	return Error.OK

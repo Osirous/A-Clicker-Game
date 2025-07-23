@@ -25,6 +25,7 @@ const ENEMY_DATA : Dictionary = {
 			"The goblin parries your blow!",
 			"The goblin ducks under your swing!"
 		],
+		"loot_name": "Goblin Ears",
 		"min_drops": 0,
 		"max_drops": 2,
 		"drop_manager": "ManagerLoot"
@@ -43,6 +44,7 @@ const ENEMY_DATA : Dictionary = {
 			"The ferocious badger snarls and sidesteps your swing!",
 			"Your attack whooshes over the low-crouched badger!"
 		],
+		"loot_name": "Badger Claws",
 		"min_drops": 0,
 		"max_drops": 3,
 		"drop_manager": "ManagerLoot"
@@ -60,6 +62,7 @@ const ENEMY_DATA : Dictionary = {
 			"The assassin parries your blow!",
 			"The assassin leaps backward, avoiding your swing!"
 		],
+		"loot_name": "Gold Coins",
 		"min_drops": 0,
 		"max_drops": 10,
 		"drop_manager": "ManagerLoot"
@@ -78,6 +81,7 @@ const ENEMY_DATA : Dictionary = {
 			"Your attack passes through the swirling air!",
 			"The elemental disperses and reforms!"
 		],
+		"loot_name": "Elemental Core",
 		"min_drops": 0,
 		"max_drops": 1,
 		"drop_manager": "ManagerLoot"
@@ -96,6 +100,7 @@ const ENEMY_DATA : Dictionary = {
 			"The armor shifts, deflecting your strike with a metallic screech!",
 			"The empty helm turns mockingly as your attack misses its mark!"
 		],
+		"loot_name": "Scrap Metal",
 		"min_drops": 0,
 		"max_drops": 3,
 		"drop_manager": "ManagerLoot"
@@ -114,6 +119,7 @@ const ENEMY_DATA : Dictionary = {
 			"The banshee phases out of existence, avoiding your strike!",
 			"The wailing spirit becomes incorporeal as you attack!"
 		],
+		"loot_name": "Ghostly Essence",
 		"min_drops": 0,
 		"max_drops": 1,
 		"drop_manager": "ManagerLoot"
@@ -132,6 +138,7 @@ const ENEMY_DATA : Dictionary = {
 			"She blows you a kiss as your weapon misses by inches!",
 			"The seductive demon vanishes in a puff of smoke!"
 		],
+		"loot_name": "Succubus Tails",
 		"min_drops": 0,
 		"max_drops": 1,
 		"drop_manager": "ManagerLoot"
@@ -150,6 +157,7 @@ const ENEMY_DATA : Dictionary = {
 			"She parries with her javelin in a flash of light!",
 			"The valkyrie's divine armor glows, repelling your strike!"
 		],
+		"loot_name": "Valkyrie Feathers",
 		"min_drops": 0,
 		"max_drops": 2,
 		"drop_manager": "ManagerLoot"
@@ -168,6 +176,7 @@ const ENEMY_DATA : Dictionary = {
 			"The massive dragon shifts slightly, making you miss entirely!",
 			"Your attack bounces off the dragon's armored hide!"
 		],
+		"loot_name": "Dragon Scales",
 		"min_drops": 0,
 		"max_drops": 3,
 		"drop_manager": "ManagerLoot"

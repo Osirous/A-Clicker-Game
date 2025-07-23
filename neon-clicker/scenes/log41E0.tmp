@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca46uiinxdvsf"]
+
+[ext_resource type="Script" path="res://scripts/manager_login.gd" id="1_pje7h"]
+[ext_resource type="Script" path="res://scripts/manager_http_requests.gd" id="2_b40t2"]
+
+[node name="Login Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pje7h")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("2_b40t2")
+
+[node name="Login Manager" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 820.0
+offset_top = 332.0
+offset_right = 1056.0
+offset_bottom = 606.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Login" type="Label" parent="Login Manager"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Login"
+horizontal_alignment = 1
+
+[node name="Login_User_Name" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "User Name"
+alignment = 1
+
+[node name="Login_Password" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Blank Space" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Create New Account" type="Label" parent="Login Manager"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Create New Account"
+horizontal_alignment = 1
+
+[node name="Create_User_Name" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "User_Name"
+alignment = 1
+
+[node name="Create_Password" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Verify_Password" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Verify Password"
+alignment = 1
+secret = true
+secret_character = "*"
