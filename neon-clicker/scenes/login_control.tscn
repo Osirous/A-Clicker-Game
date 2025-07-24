@@ -30,7 +30,7 @@ grow_vertical = 2
 [node name="Login" type="Label" parent="Login Manager"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Login"
+text = "Play Online"
 horizontal_alignment = 1
 
 [node name="Login_User_Name" type="LineEdit" parent="Login Manager"]
@@ -45,7 +45,17 @@ alignment = 1
 secret = true
 secret_character = "*"
 
+[node name="Blank Space2" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Login_Button" type="Button" parent="Login Manager"]
+layout_mode = 2
+text = "Login"
+
 [node name="Blank Space" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space3" type="Label" parent="Login Manager"]
 layout_mode = 2
 
 [node name="Create New Account" type="Label" parent="Login Manager"]
@@ -72,3 +82,22 @@ placeholder_text = "Verify Password"
 alignment = 1
 secret = true
 secret_character = "*"
+
+[node name="Blank Space4" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Create_Account_Button" type="Button" parent="Login Manager"]
+layout_mode = 2
+text = "Create Account"
+
+[node name="Blank Space5" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Offline_Button" type="Button" parent="Login Manager"]
+layout_mode = 2
+text = "Play Offline"
+
+[connection signal="request_completed" from="HTTPRequest" to="HTTPRequest" method="_on_request_completed"]
+[connection signal="pressed" from="Login Manager/Login_Button" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="Login Manager/Create_Account_Button" to="." method="_on_create_account_button_pressed"]
+[connection signal="pressed" from="Login Manager/Offline_Button" to="." method="_on_offline_button_pressed"]

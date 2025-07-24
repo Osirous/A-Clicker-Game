@@ -12,6 +12,7 @@ func _init() -> void:
 @onready var create_username_line_edit : LineEdit = $"Login Manager/Create_User_Name"
 @onready var create_password_line_edit : LineEdit = $"Login Manager/Create_Password"
 @onready var create_password_verify_line_edit : LineEdit = $"Login Manager/Verify_Password"
+@onready var start_button : Button = $"../Start_Button"
 
 var login_username : String
 var login_password : String
@@ -37,8 +38,32 @@ func _on_create_login() -> void:
 		#
 		return
 	
-	if ManagerHTTPRequests.send_create_request(create_password, create_password_verify):
-		return
+	ManagerHTTPRequests.ref.send_create_request(create_username, create_password)
 
 func passwords_match() -> bool:
 	return create_password == create_password_verify
+
+
+func _on_create_account_button_pressed() -> void:
+	_on_create_login()
+
+
+func _on_login_button_pressed() -> void:
+	_on_login()
+	ManagerHTTPRequests.ref.login_callback = self._on_login_result
+	ManagerHTTPRequests.ref.send_login_request(login_username, login_password)
+
+func _on_login_result(success: bool) -> void:
+	if success:
+		# add a popup here for a successful login
+		print("Login succeeded!")
+		start_button.visible = true
+		$"Login Manager".visible = false
+	else:
+		# add a popup here for a failed login
+		print("Login failed.")
+
+
+func _on_offline_button_pressed() -> void:
+	start_button.visible = true
+	$"Login Manager".visible = false
