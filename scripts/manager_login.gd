@@ -13,6 +13,7 @@ func _init() -> void:
 @onready var create_password_line_edit : LineEdit = $"Login Manager/Create_Password"
 @onready var create_password_verify_line_edit : LineEdit = $"Login Manager/Verify_Password"
 @onready var start_button : Button = $"../Start_Button"
+@onready var login_manager : VBoxContainer = $"Login Manager"
 
 var login_username : String
 var login_password : String
@@ -58,7 +59,7 @@ func _on_login_result(success: bool) -> void:
 		# add a popup here for a successful login
 		print("Login succeeded!")
 		start_button.visible = true
-		$"Login Manager".visible = false
+		login_manager.visible = false
 	else:
 		# add a popup here for a failed login
 		print("Login failed.")
@@ -66,4 +67,4 @@ func _on_login_result(success: bool) -> void:
 
 func _on_offline_button_pressed() -> void:
 	start_button.visible = true
-	$"Login Manager".visible = false
+	login_manager.visible = false

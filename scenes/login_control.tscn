@@ -14,18 +14,12 @@ script = ExtResource("1_pje7h")
 script = ExtResource("2_b40t2")
 
 [node name="Login Manager" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 820.0
-offset_top = 332.0
-offset_right = 1056.0
-offset_bottom = 606.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 842.0
+offset_top = 265.5
+offset_right = 1078.0
+offset_bottom = 814.5
+alignment = 1
 
 [node name="Login" type="Label" parent="Login Manager"]
 layout_mode = 2
@@ -53,6 +47,12 @@ layout_mode = 2
 text = "Login"
 
 [node name="Blank Space" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space7" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space8" type="Label" parent="Login Manager"]
 layout_mode = 2
 
 [node name="Blank Space3" type="Label" parent="Login Manager"]
@@ -91,6 +91,15 @@ layout_mode = 2
 text = "Create Account"
 
 [node name="Blank Space5" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space6" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space10" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space9" type="Label" parent="Login Manager"]
 layout_mode = 2
 
 [node name="Offline_Button" type="Button" parent="Login Manager"]
