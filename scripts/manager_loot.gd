@@ -11,6 +11,7 @@ signal loot_updated
 signal loot_created(quantity : int)
 signal loot_spent(quantity : int)
 
+@onready var floating_reward_origin : Node = $"../Fight Enemies/FloatingRewardOrigin"
 var _loot : Dictionary = {}
 
 const ALL_LOOT_TYPES_IN_DISPLAY_ORDER : PackedStringArray = [
@@ -48,6 +49,8 @@ func create_loot(enemy_name: String, quantity : int) -> void:
 	
 	loot_created.emit(quantity)
 	loot_updated.emit()
+	
+	FloatingDamageText.display_text("You found %s" %AttackScript.ref.current_enemy_data.loot_name, floating_reward_origin.global_position)
 
 func can_spend(enemy_name: String, quantity : int) -> bool:
 	if quantity <= 0 : return false

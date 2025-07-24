@@ -181,5 +181,4 @@ const ENEMY_DATA : Dictionary = {
 		"max_drops": 3,
 		"drop_manager": "ManagerLoot"
 	}
-	# Add more enemies as needed
 }

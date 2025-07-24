@@ -14,6 +14,7 @@ func _init() -> void:
 @onready var create_password_verify_line_edit : LineEdit = $"Login Manager/Verify_Password"
 @onready var start_button : Button = $"../Start_Button"
 @onready var login_manager : VBoxContainer = $"Login Manager"
+@onready var feedback : AcceptDialog = $FeedbackPopup
 
 var login_username : String
 var login_password : String
@@ -21,22 +22,28 @@ var create_username : String
 var create_password : String
 var create_password_verify : String
 
-func _ready() -> void:
-	pass
+func show_feedback(message: String):
+	feedback.dialog_text = message
+	feedback.popup_centered()
 
 func _on_login() -> void:
 	login_username = login_username_line_edit.text
 	login_password = login_password_line_edit.text
 
 func _on_create_login() -> void:
+
 	create_username = create_username_line_edit.text
 	create_password =  create_password_line_edit.text
 	create_password_verify = create_password_verify_line_edit.text
 
+	if create_username == "" or create_password == "":
+		# pop up that they are a failure for not putting in credentials
+		show_feedback("Please enter both a username and a password.")
+		return
+
 	if not passwords_match():
 		## make a popup box that says they dont match
-		# popup_mismatch.visible = true
-		#
+		show_feedback("Passwords must match to create a new account.")
 		return
 	
 	ManagerHTTPRequests.ref.send_create_request(create_username, create_password)
@@ -56,13 +63,12 @@ func _on_login_button_pressed() -> void:
 
 func _on_login_result(success: bool) -> void:
 	if success:
-		# add a popup here for a successful login
-		print("Login succeeded!")
+		# this is currently annoying so its commented out.
+		#show_feedback("Login Successful!")
 		start_button.visible = true
 		login_manager.visible = false
 	else:
-		# add a popup here for a failed login
-		print("Login failed.")
+		show_feedback("Login Failed.")
 
 
 func _on_offline_button_pressed() -> void:

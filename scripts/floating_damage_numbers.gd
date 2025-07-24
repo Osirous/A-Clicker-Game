@@ -8,9 +8,9 @@ func display_number(value: float, position: Vector2, is_critical: bool = false) 
 	
 	var color : String = "#FFF"
 	if is_critical:
-		color = "#B22"
+		color = "#BB2222"
 	if value == 0.0:
-		color = "#FFF0"
+		color = "#FFFF00"
 	
 	number.label_settings.font_color = color
 	number.label_settings.font_size = 100

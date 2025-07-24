@@ -29,7 +29,7 @@ horizontal_alignment = 1
 
 [node name="Login_User_Name" type="LineEdit" parent="Login Manager"]
 layout_mode = 2
-placeholder_text = "User Name"
+placeholder_text = "Username"
 alignment = 1
 
 [node name="Login_Password" type="LineEdit" parent="Login Manager"]
@@ -66,7 +66,7 @@ horizontal_alignment = 1
 
 [node name="Create_User_Name" type="LineEdit" parent="Login Manager"]
 layout_mode = 2
-placeholder_text = "User_Name"
+placeholder_text = "Username"
 alignment = 1
 
 [node name="Create_Password" type="LineEdit" parent="Login Manager"]
@@ -105,6 +105,8 @@ layout_mode = 2
 [node name="Offline_Button" type="Button" parent="Login Manager"]
 layout_mode = 2
 text = "Play Offline"
+
+[node name="FeedbackPopup" type="AcceptDialog" parent="."]
 
 [connection signal="request_completed" from="HTTPRequest" to="HTTPRequest" method="_on_request_completed"]
 [connection signal="pressed" from="Login Manager/Login_Button" to="." method="_on_login_button_pressed"]

@@ -11,7 +11,6 @@ func _ready() -> void:
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
 
 func _on_enemy_changed(new_enemy_key: String) -> void:
-	print("Label: Enemy changed to ", new_enemy_key)
 	# Update the enemy data
 	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.current_enemy_key]
 	# Refresh the display

@@ -36,7 +36,6 @@ func _ready() -> void:
 	enemy_sprite_node.visible = false
 
 func _on_enemy_changed(new_enemy_key: String) -> void:
-	print("Attack script: Enemy changed to ", new_enemy_key)
 	setup_current_enemy()
 	
 	# Force emit the health signal so labels update immediately
@@ -110,3 +109,5 @@ func on_death() -> void:
 		ManagerLoot.ref.create_loot(current_enemy_data.loot_name, drops)
 		if drops == 0:
 			FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)
+	else:
+		FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)

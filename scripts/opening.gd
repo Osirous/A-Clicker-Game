@@ -8,9 +8,12 @@ func _init() -> void:
 	else : queue_free()
 
 @onready var opening_image : Sprite2D = $"Opening Image"
-# move this to the login.gd when its created
+@onready var login_manager : Control = $"Login Control"
 
-func on_ready() -> void:
+func _ready() -> void:
 	
 	if opening_image.visible == false:
 		opening_image.visible = true
+
+	if login_manager.visible == false:
+		login_manager.visible = true

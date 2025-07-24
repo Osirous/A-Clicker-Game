@@ -6,6 +6,7 @@ func _init() -> void:
 	if not ref : ref = self
 	else : queue_free()
 
+## This function probably needs to be moved into an upgrade script
 func calculate_linear_upgrade(base_linear_value: float, linear_upgrade_level: int, initial_linear_bonus: float, linear_per_level_bonus: float) -> float:
 	var new_linear_base : float = 0.0 # Initialize base to 0.0
 	## Calculate the total upgrade bonus using the new formula form
@@ -20,6 +21,7 @@ func click_critical_damage() -> float:
 func click_damage() -> float:
 	return calculate_linear_upgrade(PlayerData.click_damage, PlayerData.click_damage_upgrade, PlayerData.DAMAGE_BONUS_AT_LEVEL_ZERO, PlayerData.DAMAGE_BONUS_PER_LEVEL_INCREMENT)
 
+## This function probably needs to be moved into an upgrade script
 func calculate_quadratic_upgrade(base_quadratic_value: int, quadratic_upgrade_level: int, quadratic_coefficient: int, bonus_offset: int) -> int:
 	var total_quadratic_upgrade_bonus : float = 0.0 # Initialize bonus to 0.0
 	if quadratic_upgrade_level == 0: 

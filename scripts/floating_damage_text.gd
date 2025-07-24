@@ -1,14 +1,17 @@
 extends Node2D
 
+
 func display_text(value: String, position: Vector2) -> void:
 	var number : Node = Label.new()
 	number.text = str(value)
 	number.z_index = 5
 	number.label_settings = LabelSettings.new()
 	
-	var color : String = "#B22"
-	if value == "you missed!":
-		color = "#FFF0"
+	var color : String = "#BB2222"
+	if value == "You missed!":
+		color = "#FFFF00"
+	if value.begins_with("You found"):
+		color = "#7BB35D"
 	
 	number.label_settings.font_color = color
 	number.label_settings.font_size = 75

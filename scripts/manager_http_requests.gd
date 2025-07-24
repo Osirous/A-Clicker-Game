@@ -15,7 +15,7 @@ func _ready() -> void:
 	pass
 
 func send_login_request(username, password):
-	var payload = {
+	var payload : Dictionary = {
 		"username": username,
 		"password": password
 	}
@@ -29,7 +29,7 @@ func send_login_request(username, password):
 	)
 
 func send_create_request(username, password):
-	var payload = {
+	var payload : Dictionary = {
 		"username": username,
 		"password": password
 	}

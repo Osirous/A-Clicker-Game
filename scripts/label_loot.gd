@@ -5,7 +5,7 @@ var loot_name : String = current_enemy_data.loot_name
 
 func _ready() -> void:
 	## uncommenting _update_text() here will make the label appear immediately
-	## with it removed, it only shows up once the player gets a goblin ear.
+	## with it removed, it only shows up once the player gets their first loot.
 	#_update_text()
 	ManagerLoot.ref.loot_updated.connect(_on_loot_updated)
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
