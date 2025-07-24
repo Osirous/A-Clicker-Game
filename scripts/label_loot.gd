@@ -13,7 +13,7 @@ func _ready() -> void:
 func _update_text() -> void:
 	var new_text_lines : PackedStringArray
 	
-	for loot_name_to_display in ManagerLoot.ref.ALL_LOOT_TYPES_IN_DISPLAY_ORDER:
+	for loot_name_to_display: String in ManagerLoot.ref.ALL_LOOT_TYPES_IN_DISPLAY_ORDER:
 		var quantity : int = ManagerLoot.ref._loot.get(loot_name_to_display, 0)
 		if quantity > 0:
 			new_text_lines.append("%s : %s" % [loot_name_to_display, quantity])
@@ -23,7 +23,7 @@ func _update_text() -> void:
 func _on_loot_updated() -> void:
 	_update_text()
 
-func _on_enemy_changed(new_enemy_key: String) -> void:
+func _on_enemy_changed(_new_enemy_key: String) -> void:
 	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.current_enemy_key]
 	loot_name = current_enemy_data.loot_name
 	_update_text()

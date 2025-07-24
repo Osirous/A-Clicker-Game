@@ -21,7 +21,7 @@ func get_enemy_kills(enemy_name: String) -> int:
 var current_enemy_key : String = "goblin"  # Start with first enemy
 var enemy_progression : Array = ["goblin", "badger", "assassin", "air_elemental", "animated_armor", "banshee", "succubus", "valkyrie", "red_dragon"]  # Define enemy order
 
-signal enemy_changed(current_enemy_key)
+signal enemy_changed(current_enemy_key: String)
 
 ## Move to next enemy logic
 func can_advance_to_next_enemy() -> bool:

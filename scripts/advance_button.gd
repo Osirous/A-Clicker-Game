@@ -6,7 +6,7 @@ func _ready() -> void:
 	AttackScript.ref.enemy_died.connect(_on_enemy_died)
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
 
-func _on_enemy_died(enemy_name: String) -> void:
+func _on_enemy_died(_enemy_name: String) -> void:
 	update_button_visibility()
 	
 func update_button_visibility() -> void:
@@ -18,5 +18,5 @@ func update_button_visibility() -> void:
 func _on_pressed() -> void:
 	PlayerData.advance_to_next_enemy()
 
-func _on_enemy_changed(new_enemy_key: String) -> void:
+func _on_enemy_changed(_new_enemy_key: String) -> void:
 	update_button_visibility()

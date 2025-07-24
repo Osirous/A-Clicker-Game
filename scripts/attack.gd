@@ -7,13 +7,13 @@ func _init() -> void:
 	if not ref : ref = self
 	else : queue_free()
 
-@onready var floating_damage_origin : Node = $"../FloatingDamageOrigin"
-@onready var floating_text_origin : Node = $"../FloatingTextOrigin"
-@onready var floating_reward_origin : Node = $"../FloatingRewardOrigin"
-@onready var floating_kill_origin : Node = $"../FloatingKillOrigin"
+@onready var floating_damage_origin : Node2D = $"../FloatingDamageOrigin"
+@onready var floating_text_origin : Node2D = $"../FloatingTextOrigin"
+@onready var floating_reward_origin : Node2D = $"../FloatingRewardOrigin"
+@onready var floating_kill_origin : Node2D = $"../FloatingKillOrigin"
 
 var current_enemy_data : Dictionary
-var enemy_sprite_node : Node
+var enemy_sprite_node : Node2D
 var health : float
 var to_hit_threshold : int
 var to_crit_threshold : int
@@ -24,8 +24,8 @@ var no_loot_message : String
 # Initialize to true so we can attack right away!
 var can_click : bool = true
 
-signal health_updated(new_health)
-signal enemy_died(enemy_name)
+signal health_updated(new_health: float)
+signal enemy_died(enemy_name: String)
 
 func _ready() -> void:
 	pressed.connect(_on_pressed)
@@ -35,7 +35,7 @@ func _ready() -> void:
 	setup_current_enemy()
 	enemy_sprite_node.visible = false
 
-func _on_enemy_changed(new_enemy_key: String) -> void:
+func _on_enemy_changed(_new_enemy_key: String) -> void:
 	setup_current_enemy()
 	
 	# Force emit the health signal so labels update immediately
@@ -62,10 +62,11 @@ func setup_current_enemy() -> void:
 	no_loot_message = current_enemy_data.no_loot_message
 
 func _on_pressed() -> void: 
+	var attack_timer : Timer = $AttackTimer
 
 	if can_click:
 		can_click = false
-		$AttackTimer.start()
+		attack_timer.start()
 		_on_hit()
 
 func _on_attack_timer_timeout() -> void:

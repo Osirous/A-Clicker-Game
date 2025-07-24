@@ -11,7 +11,7 @@ signal loot_updated
 signal loot_created(quantity : int)
 signal loot_spent(quantity : int)
 
-@onready var floating_reward_origin : Node = $"../Fight Enemies/FloatingRewardOrigin"
+@onready var floating_reward_origin : Node2D = $"../Fight Enemies/FloatingRewardOrigin"
 var _loot : Dictionary = {}
 
 const ALL_LOOT_TYPES_IN_DISPLAY_ORDER : PackedStringArray = [

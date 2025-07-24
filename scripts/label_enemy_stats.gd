@@ -10,7 +10,7 @@ func _ready() -> void:
 	AttackScript.ref.enemy_died.connect(_on_enemy_died)
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
 
-func _on_enemy_changed(new_enemy_key: String) -> void:
+func _on_enemy_changed(_new_enemy_key: String) -> void:
 	# Update the enemy data
 	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.current_enemy_key]
 	# Refresh the display
@@ -37,12 +37,12 @@ func _on_health_updated(_new_health: float) -> void :
 func calculate_enemy_stats(enemy_threshold: int, base_threshold: int = 750) -> Dictionary:
 	# Avoidance is straightforward - just enemy vs base
 	var avoidance_difference : int = enemy_threshold - base_threshold
-	var avoidance_percent : int = (avoidance_difference / 1000.0) * 100
+	var avoidance_percent : float = (avoidance_difference / 1000.0) * 100
 	
 	# Hit chance factors in player's current upgrades
 	var player_accuracy : int = ManagerClicks.ref.click_accuracy()  # Player's accuracy bonus
 	var effective_threshold : int = enemy_threshold - player_accuracy
-	var hit_chance : int = ((1000 - effective_threshold) / 1000.0) * 100
+	var hit_chance : float = ((1000 - effective_threshold) / 1000.0) * 100
 	
 	return {
 		"avoidance": int(avoidance_percent),

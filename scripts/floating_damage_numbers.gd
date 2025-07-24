@@ -1,7 +1,7 @@
 extends Node2D
 
-func display_number(value: float, position: Vector2, is_critical: bool = false) -> void:
-	var number : Node = Label.new()
+func display_number(value: float, display_position: Vector2, is_critical: bool = false) -> void:
+	var number : Label = Label.new()
 	number.text = str(value)
 	number.z_index = 5
 	number.label_settings = LabelSettings.new()
@@ -25,7 +25,7 @@ func display_number(value: float, position: Vector2, is_critical: bool = false) 
 	## This makes the text center on the node
 	## Use number.global_position = position 
 	## to make the text start from the top left corner of the node instead
-	number.global_position = position - number.pivot_offset
+	number.global_position = display_position - number.pivot_offset
 
 	var tween : Tween = get_tree().create_tween()
 	tween.set_parallel(true)

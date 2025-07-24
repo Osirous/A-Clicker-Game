@@ -22,7 +22,7 @@ var create_username : String
 var create_password : String
 var create_password_verify : String
 
-func show_feedback(message: String):
+func show_feedback(message: String) -> void:
 	feedback.dialog_text = message
 	feedback.popup_centered()
 
@@ -68,7 +68,7 @@ func _on_login_result(success: bool) -> void:
 		start_button.visible = true
 		login_manager.visible = false
 	else:
-		show_feedback("Login Failed.")
+		show_feedback("Incorrect username or password.")
 
 
 func _on_offline_button_pressed() -> void:
