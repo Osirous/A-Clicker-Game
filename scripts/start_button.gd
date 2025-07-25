@@ -14,3 +14,8 @@ func _on_pressed() -> void:
 	label_loot.visible = true
 	label_enemy_stats.visible = true
 	AttackScript.ref.enemy_sprite_node.visible = true
+
+func _on_save_timer_timeout() -> void:
+	PlayerData.save_data.save_to_file()
+	if ManagerLogin.ref.is_online:
+		PlayerData.save_data.save_data_to_server(ManagerHTTPRequests.ref.save_id)

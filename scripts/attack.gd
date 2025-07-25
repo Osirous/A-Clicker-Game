@@ -46,7 +46,7 @@ func setup_current_enemy() -> void:
 	if enemy_sprite_node:
 		enemy_sprite_node.visible = false
 # Get the current enemies data and set up vars
-	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.current_enemy_key]
+	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
 
 # Hide all enemy sprites first, then show the current one
 	enemy_sprite_node = get_node("../" + current_enemy_data.sprite_node)
@@ -99,7 +99,7 @@ func on_death() -> void:
 	## send new enemy health to label_enemy_stats.gd
 	health_updated.emit(health)
 	
-	PlayerData.increment_enemy_kills(PlayerData.current_enemy_key)
+	PlayerData.increment_enemy_kills(PlayerData.save_data.current_enemy_key)
 	
 	## send enemy death to label_enemy_stats.gd
 	enemy_died.emit(current_enemy_data.name)
@@ -112,3 +112,9 @@ func on_death() -> void:
 			FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)
 	else:
 		FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)
+	
+	#print("saving locally")
+	#PlayerData.save_data.save_to_file()
+	#print("Finished saving locally.")
+	#print("saving online")
+	#PlayerData.save_data.save_data_to_server(ManagerHTTPRequests.ref.save_id)

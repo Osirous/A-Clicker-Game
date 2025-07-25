@@ -1,0 +1,114 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca46uiinxdvsf"]
+
+[ext_resource type="Script" path="res://scripts/manager_login.gd" id="1_pje7h"]
+[ext_resource type="Script" path="res://scripts/manager_http_requests.gd" id="2_b40t2"]
+
+[node name="Login Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_pje7h")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("2_b40t2")
+
+[node name="Login Manager" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 842.0
+offset_top = 265.5
+offset_right = 1078.0
+offset_bottom = 814.5
+alignment = 1
+
+[node name="Login" type="Label" parent="Login Manager"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Play Online"
+horizontal_alignment = 1
+
+[node name="Login_User_Name" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Username"
+alignment = 1
+
+[node name="Login_Password" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Blank Space2" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Login_Button" type="Button" parent="Login Manager"]
+layout_mode = 2
+text = "Login"
+
+[node name="Blank Space" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space7" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space8" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space3" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Create New Account" type="Label" parent="Login Manager"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Create New Account"
+horizontal_alignment = 1
+
+[node name="Create_User_Name" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Username"
+alignment = 1
+
+[node name="Create_Password" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Verify_Password" type="LineEdit" parent="Login Manager"]
+layout_mode = 2
+placeholder_text = "Verify Password"
+alignment = 1
+secret = true
+secret_character = "*"
+
+[node name="Blank Space4" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Create_Account_Button" type="Button" parent="Login Manager"]
+layout_mode = 2
+text = "Create Account"
+
+[node name="Blank Space5" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space6" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space10" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Blank Space9" type="Label" parent="Login Manager"]
+layout_mode = 2
+
+[node name="Offline_Button" type="Button" parent="Login Manager"]
+layout_mode = 2
+text = "Play Offline"
+
+[node name="FeedbackPopup" type="AcceptDialog" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="HTTPRequest" method="_on_request_completed"]
+[connection signal="pressed" from="Login Manager/Login_Button" to="." method="_on_login_button_pressed"]
+[connection signal="pressed" from="Login Manager/Create_Account_Button" to="." method="_on_create_account_button_pressed"]
+[connection signal="pressed" from="Login Manager/Offline_Button" to="." method="_on_offline_button_pressed"]

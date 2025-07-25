@@ -5,14 +5,14 @@ const UNLOCK_KILLS_NEEDED : Array = [1, 10, 25, 100]
 var current_enemy_data : Dictionary
 
 func _ready() -> void:
-	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.current_enemy_key]
+	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
 	AttackScript.ref.health_updated.connect(_on_health_updated)
 	AttackScript.ref.enemy_died.connect(_on_enemy_died)
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
 
 func _on_enemy_changed(_new_enemy_key: String) -> void:
 	# Update the enemy data
-	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.current_enemy_key]
+	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
 	# Refresh the display
 	_update_text()
 
@@ -50,7 +50,7 @@ func calculate_enemy_stats(enemy_threshold: int, base_threshold: int = 750) -> D
 	}
 
 func get_revealed_stats(_enemy_name: String) -> Dictionary:
-	var kills : int = PlayerData.enemy_kill_counts.get(PlayerData.current_enemy_key, 0)
+	var kills : int = PlayerData.save_data.enemy_kill_counts.get(PlayerData.save_data.current_enemy_key, 0)
 	var analysis_level : int = 0
 	
 	if kills >= UNLOCK_KILLS_NEEDED[0]:  # Level 1

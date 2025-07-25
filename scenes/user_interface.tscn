@@ -57,6 +57,10 @@ theme_override_font_sizes/font_size = 98
 text = "Start"
 script = ExtResource("4_oo7c5")
 
+[node name="SaveTimer" type="Timer" parent="Opening/Start_Button"]
+wait_time = 30.0
+autostart = true
+
 [node name="ManagerLoot" parent="." instance=ExtResource("1_ygkol")]
 
 [node name="LabelLoot" parent="." instance=ExtResource("2_6dqsc")]
@@ -192,6 +196,7 @@ script = ExtResource("19_b5wtg")
 script = ExtResource("7_avjao")
 
 [connection signal="pressed" from="Opening/Start_Button" to="Opening/Start_Button" method="_on_pressed"]
+[connection signal="timeout" from="Opening/Start_Button/SaveTimer" to="Opening/Start_Button" method="_on_save_timer_timeout"]
 [connection signal="timeout" from="Fight Enemies/Attack/AttackTimer" to="Fight Enemies/Attack" method="_on_attack_timer_timeout"]
 [connection signal="pressed" from="Fight Enemies/AdvanceButton" to="Fight Enemies/AdvanceButton" method="_on_pressed"]
 [connection signal="pressed" from="Fight Enemies/RetreatButton" to="Fight Enemies/RetreatButton" method="_on_pressed"]

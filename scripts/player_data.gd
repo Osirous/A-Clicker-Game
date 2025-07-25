@@ -6,16 +6,18 @@ func _init() -> void:
 	if not ref : ref = self
 	else : queue_free()
 
-var enemy_kill_counts : Dictionary = {}
+var save_data : PlayerSaveData = preload("res://scripts/player_save_data.gd").new()
 
 func increment_enemy_kills(enemy_name: String) -> void:
-	if enemy_name in enemy_kill_counts:
-		enemy_kill_counts[enemy_name] += 1
+	if enemy_name in save_data.enemy_kill_counts:
+		print(enemy_name)
+		save_data.enemy_kill_counts[enemy_name] += 1
+		print(save_data.enemy_kill_counts)
 	else:
-		enemy_kill_counts[enemy_name] = 1
+		save_data.enemy_kill_counts[enemy_name] = 1
 
 func get_enemy_kills(enemy_name: String) -> int:
-	return enemy_kill_counts.get(enemy_name, 0)
+	return save_data.enemy_kill_counts.get(enemy_name, 0)
 
 ## Defines our current enemy
 var current_enemy_key : String = "goblin"  # Start with first enemy
@@ -26,36 +28,36 @@ signal enemy_changed(current_enemy_key: String)
 ## Move to next enemy logic
 func can_advance_to_next_enemy() -> bool:
 	# Check if current enemy has been killed at least once
-	var current_kills : int = get_enemy_kills(current_enemy_key)
+	var current_kills : int = get_enemy_kills(save_data.current_enemy_key)
 	return current_kills > 0
 
 func get_next_enemy_key() -> String:
-	var current_index : int = enemy_progression.find(current_enemy_key)
+	var current_index : int = enemy_progression.find(save_data.current_enemy_key)
 	if current_index < enemy_progression.size() - 1:
 		return enemy_progression[current_index + 1]
-	return current_enemy_key  # Stay on last enemy if at end
+	return save_data.current_enemy_key  # Stay on last enemy if at end
 
 func advance_to_next_enemy() -> void:
 	if can_advance_to_next_enemy():
-		current_enemy_key = get_next_enemy_key()
+		save_data.current_enemy_key = get_next_enemy_key()
 		# Emit signal to update UI, reset enemy health, etc.
-		enemy_changed.emit(current_enemy_key)
+		enemy_changed.emit(save_data.current_enemy_key)
 
 ## Move to previous enemy logic
 func can_retreat_to_previous_enemy() -> bool:
-	var current_index : int = enemy_progression.find(current_enemy_key)
+	var current_index : int = enemy_progression.find(save_data.current_enemy_key)
 	return current_index > 0
 
 func get_previous_enemy_key() -> String:
-	var current_index : int = enemy_progression.find(current_enemy_key)
+	var current_index : int = enemy_progression.find(save_data.current_enemy_key)
 	if current_index > 0:
 		return enemy_progression[current_index -1]
-	return current_enemy_key # Stay on first enemy if already at beginning
+	return save_data.current_enemy_key # Stay on first enemy if already at beginning
 
 func retreat_to_previous_enemy() -> void:
 	if can_retreat_to_previous_enemy():
-		current_enemy_key = get_previous_enemy_key()
-		enemy_changed.emit(current_enemy_key)
+		save_data.current_enemy_key = get_previous_enemy_key()
+		enemy_changed.emit(save_data.current_enemy_key)
 
 ## Defines our click damage
 var click_damage_upgrade : int = 0
@@ -98,3 +100,8 @@ var click_crit_damage_upgrade : int = 0
 var click_crit_damage : float = 1.0
 @export var CRITICAL_BONUS_AT_LEVEL_ZERO : float = 0.25
 @export var CRITICAL_BONUS_PER_LEVEL_INCREMENT : float = 0.25
+
+func _exit_tree() -> void:
+	save_data.save_to_file()
+	if ManagerLogin.ref.is_online:
+		save_data.save_data_to_server(ManagerHTTPRequests.ref.save_id)

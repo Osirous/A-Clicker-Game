@@ -21,6 +21,7 @@ var login_password : String
 var create_username : String
 var create_password : String
 var create_password_verify : String
+var is_online : bool
 
 func show_feedback(message: String) -> void:
 	feedback.dialog_text = message
@@ -65,12 +66,19 @@ func _on_login_result(success: bool) -> void:
 	if success:
 		# this is currently annoying so its commented out.
 		#show_feedback("Login Successful!")
+		is_online = true
 		start_button.visible = true
 		login_manager.visible = false
+		PlayerData.save_data.set_save_path(ManagerHTTPRequests.ref.user_id)
 	else:
 		show_feedback("Incorrect username or password.")
 
 
 func _on_offline_button_pressed() -> void:
+	is_online = false
+	ManagerHTTPRequests.ref.jwt_token = ""
+	var OFFLINE_USER_ID := "00000000-0000-0000-0000-000000000000"
+	PlayerData.save_data.set_save_path(OFFLINE_USER_ID)
+	PlayerData.save_data.load_from_file()
 	start_button.visible = true
 	login_manager.visible = false

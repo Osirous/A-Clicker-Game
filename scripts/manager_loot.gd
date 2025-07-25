@@ -12,7 +12,7 @@ signal loot_created(quantity : int)
 signal loot_spent(quantity : int)
 
 @onready var floating_reward_origin : Node2D = $"../Fight Enemies/FloatingRewardOrigin"
-var _loot : Dictionary = {}
+var loot : Dictionary = {}
 
 const ALL_LOOT_TYPES_IN_DISPLAY_ORDER : PackedStringArray = [
 	"Goblin Ears",
@@ -36,16 +36,16 @@ func on_successful_loot() -> bool:
 	return false
 
 func get_loot(enemy_name: String) -> int:
-	return _loot.get(enemy_name, 0)
+	return loot.get(enemy_name, 0)
 
 
 func create_loot(enemy_name: String, quantity : int) -> void:
 	if quantity <= 0 : return
 	
-	if enemy_name in _loot:
-		_loot[enemy_name] += quantity
+	if enemy_name in loot:
+		loot[enemy_name] += quantity
 	else:
-		_loot[enemy_name] = quantity
+		loot[enemy_name] = quantity
 	
 	loot_created.emit(quantity)
 	loot_updated.emit()
@@ -64,8 +64,8 @@ func spend_loot(enemy_name: String, quantity : int) -> Error:
 	
 	if quantity > get_loot(enemy_name) : return Error.FAILED
 	
-	if enemy_name in _loot:
-		_loot[enemy_name] -= quantity
+	if enemy_name in loot:
+		loot[enemy_name] -= quantity
 	
 	loot_spent.emit(quantity)
 	loot_updated.emit()
