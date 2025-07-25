@@ -10,9 +10,7 @@ var save_data : PlayerSaveData = preload("res://scripts/player_save_data.gd").ne
 
 func increment_enemy_kills(enemy_name: String) -> void:
 	if enemy_name in save_data.enemy_kill_counts:
-		print(enemy_name)
 		save_data.enemy_kill_counts[enemy_name] += 1
-		print(save_data.enemy_kill_counts)
 	else:
 		save_data.enemy_kill_counts[enemy_name] = 1
 
@@ -29,7 +27,7 @@ signal enemy_changed(current_enemy_key: String)
 func can_advance_to_next_enemy() -> bool:
 	# Check if current enemy has been killed at least once
 	var current_kills : int = get_enemy_kills(save_data.current_enemy_key)
-	return current_kills > 0
+	return current_kills > 9 # player must get 10 kills of an enemy to advance
 
 func get_next_enemy_key() -> String:
 	var current_index : int = enemy_progression.find(save_data.current_enemy_key)
@@ -104,4 +102,4 @@ var click_crit_damage : float = 1.0
 func _exit_tree() -> void:
 	save_data.save_to_file()
 	if ManagerLogin.ref.is_online:
-		save_data.save_data_to_server(ManagerHTTPRequests.ref.save_id)
+		save_data.save_data_to_server(save_data.save_id)

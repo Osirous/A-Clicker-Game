@@ -3,6 +3,7 @@ extends Button
 
 func _ready() -> void:
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
+	StartButton.ref.game_start.connect(update_visibility)
 	# Check initial visibility
 	update_visibility()
 

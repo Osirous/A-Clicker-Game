@@ -3,7 +3,7 @@ extends Resource
 
 var PATH : String = ""
 
-#var save_id : String
+var save_id : String
 
 var enemy_kill_counts : Dictionary
 var current_enemy_key : String = "goblin"
@@ -69,7 +69,6 @@ func load_save_data(save: Dictionary) -> void:
 
 func save_to_file() -> void:
 	var save_dict : Dictionary = to_dict()
-	print("attempting to save to path", PATH)
 	var file = FileAccess.open(PATH, FileAccess.WRITE)
 	if file == null:
 		print("Failed to open file for writing in save to file func")
@@ -88,16 +87,15 @@ func load_from_file() -> void:
 
 func save_data_to_server(save_id: String) -> void:
 	if !ManagerLogin.ref.is_online or ManagerHTTPRequests.ref.jwt_token == "":
-		print("Offline mode: skipping server upload, saving only locally.")
+		# print("Offline mode: skipping server upload, saving only locally.")
 		return
 	loot = ManagerLoot.ref.loot
 	var save_dict = to_dict()
-	print("About to upload (PUT): ", save_dict)
+	
 	var json_string = JSON.stringify(save_dict)
 	var payload = {"savedata": json_string}
 	var json = JSON.stringify(payload)
-	print("and the json_string it became after stringify", json_string)
-	print("KILL COUNTS AT UPLOAD: ", PlayerData.save_data.enemy_kill_counts)
+
 	ManagerHTTPRequests.ref.upload_save(json, save_id)
 
 func load_data_from_server(save_id: String) -> void:

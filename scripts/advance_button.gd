@@ -5,6 +5,7 @@ func _ready() -> void:
 
 	AttackScript.ref.enemy_died.connect(_on_enemy_died)
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
+	StartButton.ref.game_start.connect(update_button_visibility)
 
 func _on_enemy_died(_enemy_name: String) -> void:
 	update_button_visibility()

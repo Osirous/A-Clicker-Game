@@ -31,6 +31,7 @@ func _ready() -> void:
 	pressed.connect(_on_pressed)
 
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
+	StartButton.ref.game_start.connect(setup_current_enemy)
 	
 	setup_current_enemy()
 	enemy_sprite_node.visible = false
@@ -54,6 +55,7 @@ func setup_current_enemy() -> void:
 
 # Get the rest of the enemy data setup vars.
 	health = current_enemy_data.health
+	health_updated.emit(health)
 	to_hit_threshold = current_enemy_data.to_hit_threshold
 	to_crit_threshold = current_enemy_data.to_hit_threshold
 	min_drops = current_enemy_data.min_drops
@@ -112,9 +114,3 @@ func on_death() -> void:
 			FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)
 	else:
 		FloatingDamageText.display_text("%s" %no_loot_message, floating_reward_origin.global_position)
-	
-	#print("saving locally")
-	#PlayerData.save_data.save_to_file()
-	#print("Finished saving locally.")
-	#print("saving online")
-	#PlayerData.save_data.save_data_to_server(ManagerHTTPRequests.ref.save_id)

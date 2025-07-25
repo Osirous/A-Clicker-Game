@@ -16,9 +16,6 @@ var connection_server_save_get : String = "http://localhost:8080/api/savedata"
 var login_callback : Callable = Callable()
 var current_request_type : String = ""
 
-func _ready() -> void:
-	pass
-
 func send_login_request(username: String, password: String) -> void:
 	current_request_type = "login"
 	var payload : Dictionary = {
@@ -35,6 +32,7 @@ func send_login_request(username: String, password: String) -> void:
 	)
 
 func send_create_request(username: String, password: String) -> void:
+	current_request_type = "create account"
 	var payload : Dictionary = {
 		"username": username,
 		"password": password
@@ -54,36 +52,55 @@ func _on_request_completed(result: int, _response_code: int, headers: PackedStri
 		return
 	
 	var json_text : String = body.get_string_from_utf8()
-	var parse_result : Dictionary = JSON.parse_string(json_text)
-	print(parse_result)
+		
+	var parse_result = JSON.parse_string(json_text)
+	
+	# Defense against the dark arts! This will help with those pesky incorrect username or password errors given by the server!
+	if parse_result == null:
+		ManagerLogin.ref.show_feedback("Failed to parse server response: %s" % json_text)
+		return
+	
+	var response_dict : Dictionary = parse_result
+	
+	if response_dict.has("error"):
+		var error_msg = response_dict.error
+		if current_request_type == "login":
+			ManagerLogin.ref.show_feedback("Login failed: %s" % error_msg)
+		elif "save" in error_msg and "not found" in error_msg and current_request_type == "fetch_save":
+			return
+		else:
+			ManagerLogin.ref.show_feedback("Error: %s" % error_msg)
+		return
 	
 	if current_request_type == "login":
-		var is_success : bool = typeof(parse_result) == TYPE_DICTIONARY and parse_result.has("id") and parse_result.has("token") and parse_result.token != ""
+		var is_success : bool = typeof(response_dict) == TYPE_DICTIONARY and response_dict.has("id") and response_dict.has("token") and response_dict.token != ""
 		if is_success:
-			user_id = parse_result.id
-			jwt_token = parse_result.token
-			save_id = parse_result.save_id
+			user_id = response_dict.id
+			jwt_token = response_dict.token
+			save_id = response_dict.save_id
 		if login_callback.is_valid():
 			login_callback.call(is_success)
-			PlayerData.save_data.load_data_from_server(save_id)
+			# Only try to load save data if we have a valid save_id
+			if is_success and save_id != null and save_id != "" and save_id != "00000000-0000-0000-0000-000000000000":
+				PlayerData.save_data.load_data_from_server(save_id)
+			elif is_success:
+				return
 		else:
 			ManagerLogin.ref.show_feedback("Login failed or bad response: %s" % json_text)
 	elif current_request_type == "fetch_save":
 		# load save data from the parsed response
-		PlayerData.save_data.load_save_data(parse_result)
-		# emit a signal or trigger a UI update now?
+		PlayerData.save_data.load_save_data(response_dict)
 	elif current_request_type == "upload_save_post":
 		# Parse the server's response
-		if typeof(parse_result) == TYPE_DICTIONARY and parse_result.has("id"):
-			var new_save_id = parse_result["id"]
-			# Store this for future PUTs!
-			# For example, on your PlayerSaveData or Manager singleton:
+		if typeof(response_dict) == TYPE_DICTIONARY and response_dict.has("id"):
+			var new_save_id = response_dict["id"]
 			PlayerData.save_data.save_id = new_save_id
-			# Optionally, emit a signal or call a callback to update the UI or workflow
 	elif current_request_type == "upload_save_put":
- 		# You may want to confirm success, check for errors, or refresh data
 		print("Save updated on server!")
-#		emit_signal("save_data_updated")
+	elif current_request_type == "create account":
+		var create_success : bool = typeof(response_dict) == TYPE_DICTIONARY and response_dict.has("id")
+		if create_success:
+			ManagerLogin.ref.show_feedback("Account created successfully. You may now login.")
 
 func upload_save(json: String, save_id: String) -> void:
 	var url : String

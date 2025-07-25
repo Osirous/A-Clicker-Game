@@ -1,22 +1,23 @@
 extends Label
 
-const UNLOCK_KILLS_NEEDED : Array = [1, 10, 25, 100]
+const UNLOCK_KILLS_NEEDED : Array = [1, 25, 50, 100] # kills needed to unlock analysis levels
 
-var current_enemy_data : Dictionary
 
 func _ready() -> void:
-	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
 	AttackScript.ref.health_updated.connect(_on_health_updated)
 	AttackScript.ref.enemy_died.connect(_on_enemy_died)
 	PlayerData.enemy_changed.connect(_on_enemy_changed)
+	StartButton.ref.game_start.connect(_update_text)
+	
 
 func _on_enemy_changed(_new_enemy_key: String) -> void:
 	# Update the enemy data
-	current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
+	var current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
 	# Refresh the display
 	_update_text()
 
 func _update_text() -> void:
+	var current_enemy_data = EnemyData.ENEMY_DATA[PlayerData.save_data.current_enemy_key]
 	var analysis : Dictionary = get_revealed_stats(current_enemy_data.name)
 	var stats : Dictionary = calculate_enemy_stats(current_enemy_data.to_hit_threshold) # Display: "Animated Armor: 10% avoidance, 65% hit chance"
 	text = "Enemy: %s" % current_enemy_data.name + "\nHealth: %s" % AttackScript.ref.health
