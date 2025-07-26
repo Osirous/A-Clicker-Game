@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dek3klrvnqitb"]
+
+[ext_resource type="Script" path="res://scripts/manager_upgrades.gd" id="1_vqe6p"]
+
+[node name="Upgrade Control" type="Control"]
+layout_mode = 3
+anchor_right = 0.386
+anchor_bottom = 1.0
+offset_right = -0.119995
+grow_vertical = 2
+script = ExtResource("1_vqe6p")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Main Panel" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header Large" type="Label" parent="MarginContainer/Main Panel"]
+layout_mode = 2
+text = "Upgrades"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Panel"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Main Panel/MarginContainer"]
+layout_mode = 2

@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://scripts/manager_clicks.gd" id="1_5d0sw"]
 
-[node name="ManagerWeapons" type="Node"]
+[node name="ManagerClicks" type="Node"]
 script = ExtResource("1_5d0sw")

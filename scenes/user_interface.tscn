@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://yacnmffb5m8i"]
+[gd_scene load_steps=23 format=3 uid="uid://yacnmffb5m8i"]
 
 [ext_resource type="PackedScene" uid="uid://dn52d2iodo6am" path="res://scenes/Opening.tscn" id="1_oo7c5"]
 [ext_resource type="PackedScene" uid="uid://refblntcmr08" path="res://singletons/manager_loot/manager_loot.tscn" id="1_ygkol"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://b2qeo7wk7tlhg" path="res://Assets/enemy_hd/Red Dragon-HD.png" id="12_lf5ws"]
 [ext_resource type="Script" path="res://scripts/advance_button.gd" id="18_ctk3g"]
 [ext_resource type="Script" path="res://scripts/retreat_button.gd" id="19_b5wtg"]
+[ext_resource type="PackedScene" uid="uid://dek3klrvnqitb" path="res://scenes/upgrade_control.tscn" id="22_5aego"]
 
 [node name="UserInterface" type="Node"]
 metadata/_edit_vertical_guides_ = [415.0, 1920.0, 1507.0, 963.0, 313.0, 105.0, 1613.0]
@@ -194,6 +195,10 @@ script = ExtResource("19_b5wtg")
 
 [node name="PlayerData" type="Node" parent="."]
 script = ExtResource("7_avjao")
+
+[node name="ManagerUpgrades" type="Node" parent="."]
+
+[node name="Upgrade Control" parent="ManagerUpgrades" instance=ExtResource("22_5aego")]
 
 [connection signal="pressed" from="Opening/Start_Button" to="Opening/Start_Button" method="_on_pressed"]
 [connection signal="timeout" from="Opening/Start_Button/SaveTimer" to="Opening/Start_Button" method="_on_save_timer_timeout"]
