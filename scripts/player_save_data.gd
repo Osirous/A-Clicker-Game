@@ -71,7 +71,7 @@ func save_to_file() -> void:
 	var save_dict : Dictionary = to_dict()
 	var file = FileAccess.open(PATH, FileAccess.WRITE)
 	if file == null:
-		print("Failed to open file for writing in save to file func")
+		# print("Failed to open file for writing in save to file func")
 		return
 	file.store_string(JSON.stringify(save_dict))
 	file.close()

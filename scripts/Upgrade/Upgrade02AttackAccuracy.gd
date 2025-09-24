@@ -1,11 +1,11 @@
 class_name Upgrade02AttackAccuracy
 extends ManagerUpgrades
-## Upgrade 01 - Increases stardust created by the clicker.
+## Upgrade 02 - Increases the accuracy of your attacks.
 
 ## Load data.
 func _init() -> void:
 	level = PlayerData.ref.save_data.click_accuracy_upgrade
-	title = "Attack Accuracy Upgrade"
+	title = "Accuracy Upgrade"
 	base_cost = 100
 	cost_type = "Badger Claws"
 	calculate_cost()

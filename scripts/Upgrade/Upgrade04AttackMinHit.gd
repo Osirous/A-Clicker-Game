@@ -1,19 +1,19 @@
-class_name Upgrade03AttackCriticalDamage
+class_name Upgrade04AttackMinHit
 extends ManagerUpgrades
-## Upgrade 03 - Increases the damage of your critical hits.
+## Upgrade 04 - Increases click minimum chance to hit
 
 ## Load data.
 func _init() -> void:
-	level = PlayerData.ref.save_data.click_crit_damage_upgrade
-	title = "Critical Damage Upgrade"
-	base_cost = 250
-	cost_type = "Gold Coins"
+	level = PlayerData.ref.save_data.min_chance_to_hit_upgrade
+	title = "Minimum Hit Upgrade"
+	base_cost = 1050
+	cost_type = "Elemental Core"
 	calculate_cost()
 
 
 func description() -> String:
-	var _description : String = "Increases the damage of your critical hits.\n"
-	_description += "Effects: +1 Critical Damage / Level\n"
+	var _description : String = "Increases your minimum chance to hit.\n"
+	_description += "Effects: +1 Minimum Hit Chance / Level\n"
 	_description += "Cost: %s" %current_cost + " %s" %cost_type
 	return _description
 
@@ -28,8 +28,8 @@ func level_up() -> void:
 	var error : Error = ManagerLoot.ref.spend_loot(cost_type, current_cost)
 
 	if not error:
-		PlayerData.ref.save_data.click_crit_damage_upgrade += 1
-		level = PlayerData.ref.save_data.click_crit_damage_upgrade
+		PlayerData.ref.save_data.min_chance_to_hit_upgrade += 1
+		level = PlayerData.ref.save_data.min_chance_to_hit_upgrade
 		
 		calculate_cost()
 		

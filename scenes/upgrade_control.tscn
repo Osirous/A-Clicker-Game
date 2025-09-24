@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dek3klrvnqitb"]
+[gd_scene load_steps=9 format=3 uid="uid://dek3klrvnqitb"]
 
 [ext_resource type="Script" path="res://scripts/Upgrade/manager_upgrades.gd" id="1_vqe6p"]
 [ext_resource type="PackedScene" uid="uid://dsuch6oe3i7q0" path="res://components/Component_Upgrade.tscn" id="2_2pbln"]
 [ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade2.gd" id="3_etv5q"]
 [ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade3.gd" id="4_nkxhv"]
+[ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade4.gd" id="5_g7nbk"]
+[ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade5.gd" id="6_7anhd"]
+[ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade6.gd" id="7_7dktn"]
+[ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade7.gd" id="8_lksge"]
 
 [node name="Upgrade Control" type="Control"]
 layout_mode = 3
@@ -19,54 +23,110 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.002
 anchor_bottom = 1.0
-offset_right = 0.15979
+offset_top = 102.0
+offset_right = 0.160034
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
 
-[node name="Main Panel" type="VBoxContainer" parent="MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Main Panel" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="Header Large" type="Label" parent="MarginContainer/Main Panel"]
-layout_mode = 2
-text = "Upgrades"
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Main Panel"]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/Main Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Main Panel"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64
 
-[node name="ComponentUpgrade" parent="MarginContainer/Main Panel/MarginContainer2" instance=ExtResource("2_2pbln")]
+[node name="ComponentUpgrade" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer2" instance=ExtResource("2_2pbln")]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Main Panel"]
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64
 
-[node name="ComponentUpgrade2" parent="MarginContainer/Main Panel/MarginContainer3" instance=ExtResource("2_2pbln")]
+[node name="ComponentUpgrade2" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer3" instance=ExtResource("2_2pbln")]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 script = ExtResource("3_etv5q")
 
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/Main Panel"]
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64
 
-[node name="ComponentUpgrade3" parent="MarginContainer/Main Panel/MarginContainer4" instance=ExtResource("2_2pbln")]
+[node name="ComponentUpgrade3" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer4" instance=ExtResource("2_2pbln")]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 script = ExtResource("4_nkxhv")
+
+[node name="MarginContainer5" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="ComponentUpgrade4" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer5" instance=ExtResource("2_2pbln")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+script = ExtResource("5_g7nbk")
+
+[node name="MarginContainer6" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="ComponentUpgrade5" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer6" instance=ExtResource("2_2pbln")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+script = ExtResource("6_7anhd")
+
+[node name="MarginContainer7" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="ComponentUpgrade6" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer7" instance=ExtResource("2_2pbln")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+script = ExtResource("7_7dktn")
+
+[node name="MarginContainer8" type="MarginContainer" parent="MarginContainer/ScrollContainer/Main Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+
+[node name="ComponentUpgrade7" parent="MarginContainer/ScrollContainer/Main Panel/MarginContainer8" instance=ExtResource("2_2pbln")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+script = ExtResource("8_lksge")
+
+[node name="MarginContainerHeader" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 123.0
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="Header Large" type="Label" parent="MarginContainerHeader"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "Upgrades"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainerHeader"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainerHeader/MarginContainer"]
+layout_mode = 2

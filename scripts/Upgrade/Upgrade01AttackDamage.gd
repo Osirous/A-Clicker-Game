@@ -1,11 +1,11 @@
 class_name Upgrade01AttackDamage
 extends ManagerUpgrades
-## Upgrade 01 - Increases stardust created by the clicker.
+## Upgrade 01 - Increases amount of damage done when attacking.
 
 ## Load data.
 func _init() -> void:
 	level = PlayerData.ref.save_data.click_damage_upgrade
-	title = "Attack Damage Upgrade"
+	title = "Damage Upgrade"
 	base_cost = 15
 	cost_type = "Goblin Ears"
 	calculate_cost()
@@ -18,7 +18,7 @@ func description() -> String:
 	return _description
 
 func calculate_cost() -> void:
-	current_cost = int(base_cost * pow(1.2, level))
+	current_cost = int(base_cost * pow(1.25, level))
 
 func can_afford() -> bool:
 	var can_afford_result = ManagerLoot.ref.can_spend(cost_type, current_cost)

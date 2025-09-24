@@ -88,10 +88,10 @@ const ENEMY_DATA : Dictionary = {
 	},
 	"animated_armor": {
 		"name": "Animated Armor",
-		"health": 90.0,
+		"health": 290.0,
 		"sprite_node": "Animated Armor-HD",
 		"to_hit_threshold": 850,
-		"to_crit_threshold": 975,
+		"to_crit_threshold": 1100,
 		"kill_message": "The animated armor falls to your feet, lifeless!",
 		"no_loot_message": "The armor immediately rusts, leaving nothing!",
 		"miss_messages": [
@@ -107,10 +107,10 @@ const ENEMY_DATA : Dictionary = {
 	},
 	"banshee": {
 		"name": "Banshee",
-		"health": 45.0,
+		"health": 145.0,
 		"sprite_node": "Banshee-HD",
 		"to_hit_threshold": 1000,
-		"to_crit_threshold": 1100,
+		"to_crit_threshold": 1150,
 		"kill_message": "You have slain a banshee!",
 		"no_loot_message": "Her cackling screech chills your bones!",
 		"miss_messages": [
@@ -126,7 +126,7 @@ const ENEMY_DATA : Dictionary = {
 	},
 	"succubus": {
 		"name": "Succubus",
-		"health": 100.0,
+		"health": 300.0,
 		"sprite_node": "Succubus-HD",
 		"to_hit_threshold": 1200,
 		"to_crit_threshold": 1250,
@@ -145,7 +145,7 @@ const ENEMY_DATA : Dictionary = {
 	},
 	"valkyrie": {
 		"name": "Valkyrie",
-		"health": 250.0,
+		"health": 1250.0,
 		"sprite_node": "Valkyrie-HD",
 		"to_hit_threshold": 1400,
 		"to_crit_threshold": 1550,
@@ -164,7 +164,7 @@ const ENEMY_DATA : Dictionary = {
 	},
 	"red_dragon": {
 		"name": "Red Dragon",
-		"health": 800.0,
+		"health": 3800.0,
 		"sprite_node": "Red Dragon-HD",
 		"to_hit_threshold": 1600,
 		"to_crit_threshold": 1950,
