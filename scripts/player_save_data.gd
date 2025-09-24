@@ -21,7 +21,7 @@ var max_critical_hit_chance_upgrade : int = 0
 var max_critical_hit_chance : int = 1000
 var click_crit_damage_upgrade : int = 0
 var click_crit_damage : float = 1.0
-var loot : Dictionary = {}
+var loot : Dictionary
 
 func set_save_path(user_id: String) -> void:
 	PATH = "user://save_%s.res" %user_id

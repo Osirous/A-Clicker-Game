@@ -124,7 +124,7 @@ func upload_save(json: String, save_id: String) -> void:
 		url,
 		headers,
 		method,
-		json  # <-- Send only this, which you built in save_data_to_server
+		json
 	)
 	
 func fetch_save(save_id: String) -> void:

@@ -11,15 +11,19 @@ extends Control
 var upgrade : ManagerUpgrades
 
 func _ready() -> void:
-	#if not upgrade:
-		#upgrade = Upgrade01Clicker.new()
+	StartButton.ref.game_start.connect(_on_game_start_setup_ui)
+
+func _on_game_start_setup_ui() -> void:
+	# This ensures the upgrade is created only when needed, and before UI setup
+	if not upgrade:
+		upgrade = Upgrade01AttackDamage.new()
 	
 	update_label_title()
 	update_description()
-	#update_button()
+	update_button()
 	
 	ManagerLoot.ref.loot_created.connect(update_button)
-#	ManagerLoot.ref.spend_loot.connect(update_button)
+	ManagerLoot.ref.loot_spent.connect(update_button)
 	
 	upgrade.leveled_up.connect(update_label_title)
 	upgrade.leveled_up.connect(update_description)

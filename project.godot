@@ -21,7 +21,6 @@ FloatingDamageNumbers="*res://scripts/floating_damage_numbers.gd"
 FloatingDamageText="*res://scripts/floating_damage_text.gd"
 ManagerClicks="*res://scripts/manager_clicks.gd"
 PlayerData="*res://scripts/player_data.gd"
-ManagerUpgrades="*res://scripts/manager_upgrades.gd"
 
 [debug]
 

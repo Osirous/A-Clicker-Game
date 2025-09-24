@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://b75nvaf5cxud8"]
+
+[ext_resource type="PackedScene" uid="uid://dek3klrvnqitb" path="res://scenes/upgrade_control.tscn" id="1_pe04g"]
+[ext_resource type="Script" path="res://scripts/upgrade_button.gd" id="2_yp8ob"]
+[ext_resource type="Script" path="res://scripts/close_button.gd" id="3_ycy8x"]
+
+[node name="ManagerUpgrades" type="Node"]
+
+[node name="Upgrade Control" parent="." instance=ExtResource("1_pe04g")]
+visible = false
+offset_bottom = -237.0
+
+[node name="Upgrade" type="Button" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.897
+anchor_right = 0.345
+anchor_bottom = 0.897
+offset_left = -78.4
+offset_top = -45.76
+offset_right = 89.6
+offset_bottom = 42.24
+text = "Upgrade
+"
+script = ExtResource("2_yp8ob")
+
+[node name="Close" type="Button" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.345
+anchor_top = 0.897
+anchor_right = 0.345
+anchor_bottom = 0.897
+offset_left = -78.4
+offset_top = -45.76
+offset_right = 89.6
+offset_bottom = 42.24
+text = "Close
+"
+script = ExtResource("3_ycy8x")
+
+[connection signal="pressed" from="Upgrade" to="Upgrade" method="_on_pressed"]
+[connection signal="pressed" from="Close" to="Close" method="_on_pressed"]

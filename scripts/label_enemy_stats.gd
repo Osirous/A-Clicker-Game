@@ -1,6 +1,6 @@
 extends Label
 
-const UNLOCK_KILLS_NEEDED : Array = [1, 25, 50, 100] # kills needed to unlock analysis levels
+const UNLOCK_KILLS_NEEDED : Array = [1, 100, 250, 500] # kills needed to unlock analysis levels
 
 
 func _ready() -> void:

@@ -7,6 +7,7 @@ func _init() -> void:
 	else : queue_free()
 
 var save_data : PlayerSaveData = preload("res://scripts/player_save_data.gd").new()
+var advance_count : int = 19 # player must get 20 kills of an enemy to advance
 
 func increment_enemy_kills(enemy_name: String) -> void:
 	if enemy_name in save_data.enemy_kill_counts:
@@ -27,7 +28,7 @@ signal enemy_changed(current_enemy_key: String)
 func can_advance_to_next_enemy() -> bool:
 	# Check if current enemy has been killed at least once
 	var current_kills : int = get_enemy_kills(save_data.current_enemy_key)
-	return current_kills > 9 # player must get 10 kills of an enemy to advance
+	return current_kills > advance_count
 
 func get_next_enemy_key() -> String:
 	var current_index : int = enemy_progression.find(save_data.current_enemy_key)

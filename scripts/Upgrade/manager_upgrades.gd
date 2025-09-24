@@ -1,3 +1,5 @@
+class_name ManagerUpgrades
+
 extends Node
 
 static var ref : ManagerUpgrades
@@ -6,6 +8,10 @@ func _init() -> void:
 	if not ref : ref = self
 	else : queue_free()
 
+@onready var label_enemy_stats : Label = $"../../LabelEnemyStats"
+@onready var label_loot : Label = $"../../LabelLoot"
+@onready var attack_button : Button = $"../../Fight Enemies/Attack"
+@onready var upgrade_button : Button = $"../../ManagerUpgrades/Upgrade"
 
 signal leveled_up
 
@@ -15,7 +21,10 @@ var title : String = "Undefined"
 
 var base_cost : int = -1
 
+var cost_type : String
+
 var current_cost : int = -1
+
 
 ## Virtual Class, must be overwritten.[br]
 ## Returns the description of the upgrade.

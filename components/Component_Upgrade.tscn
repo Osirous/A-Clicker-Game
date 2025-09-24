@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsuch6oe3i7q0"]
+
+[ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade.gd" id="1_p13g6"]
+
+[node name="ComponentUpgrade" type="Control" node_paths=PackedStringArray("label_title", "button", "label_description")]
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -109.0
+offset_right = -1.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p13g6")
+label_title = NodePath("MarginContainer/HBoxContainer/Info/VBoxContainer/Title")
+button = NodePath("MarginContainer/HBoxContainer/Info/PurchaseButton")
+label_description = NodePath("MarginContainer/HBoxContainer/Info/VBoxContainer/Description")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -2.0
+offset_right = -12.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 11.0
+offset_right = -7.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Info" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.829
+anchor_bottom = 1.0
+offset_right = -0.480042
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="MarginContainer/HBoxContainer/Info/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "Upgrade Title"
+
+[node name="Description" type="RichTextLabel" parent="MarginContainer/HBoxContainer/Info/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Upgrade description
+Effect :
+Cost :"
+fit_content = true
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/HBoxContainer/Info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.842
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0401001
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -6.0
+grow_vertical = 2
+text = "Purchase"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Info/PurchaseButton" to="." method="_on_purchase_button_pressed"]

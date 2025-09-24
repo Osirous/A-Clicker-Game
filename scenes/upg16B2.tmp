@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dek3klrvnqitb"]
+[gd_scene load_steps=4 format=3 uid="uid://dek3klrvnqitb"]
 
 [ext_resource type="Script" path="res://scripts/Upgrade/manager_upgrades.gd" id="1_vqe6p"]
 [ext_resource type="PackedScene" uid="uid://dsuch6oe3i7q0" path="res://components/Component_Upgrade.tscn" id="2_2pbln"]
 [ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade2.gd" id="3_etv5q"]
-[ext_resource type="Script" path="res://scripts/Upgrade/component_upgrade3.gd" id="4_nkxhv"]
 
 [node name="Upgrade Control" type="Control"]
 layout_mode = 3
@@ -56,17 +55,7 @@ layout_mode = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64
 
-[node name="ComponentUpgrade2" parent="MarginContainer/Main Panel/MarginContainer3" instance=ExtResource("2_2pbln")]
+[node name="ComponentUpgrade" parent="MarginContainer/Main Panel/MarginContainer3" instance=ExtResource("2_2pbln")]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 script = ExtResource("3_etv5q")
-
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/Main Panel"]
-layout_mode = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_right = 64
-
-[node name="ComponentUpgrade3" parent="MarginContainer/Main Panel/MarginContainer4" instance=ExtResource("2_2pbln")]
-custom_minimum_size = Vector2(0, 160)
-layout_mode = 2
-script = ExtResource("4_nkxhv")

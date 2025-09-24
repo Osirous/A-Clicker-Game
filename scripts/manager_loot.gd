@@ -6,6 +6,7 @@ static var ref : ManagerLoot
 func _init() -> void:
 	if not ref : ref = self
 	else : queue_free()
+	print(ManagerLoot.ref.get_instance_id())
 
 signal loot_updated
 signal loot_created(quantity : int)
@@ -36,7 +37,11 @@ func on_successful_loot() -> bool:
 	return false
 
 func get_loot(enemy_name: String) -> int:
-	return loot.get(enemy_name, 0)
+	print("--- Inside get_loot ---")
+	print("  'loot' dictionary contents: ", loot) # <--- Add this!
+	var retrieved_loot = loot.get(enemy_name, 0)
+	print("  Getting loot for key: ", enemy_name, ". Found: ", retrieved_loot)
+	return retrieved_loot
 
 
 func create_loot(enemy_name: String, quantity : int) -> void:
@@ -53,10 +58,19 @@ func create_loot(enemy_name: String, quantity : int) -> void:
 	FloatingDamageText.display_text("You found %s" %AttackScript.ref.current_enemy_data.loot_name, floating_reward_origin.global_position)
 
 func can_spend(enemy_name: String, quantity : int) -> bool:
-	if quantity <= 0 : return false
+	print("--- In ManagerLoot.can_spend ---")
+	print("  Checking if can spend ", quantity, " of ", enemy_name)
+	var loot_available = get_loot(enemy_name)
+	print("  Loot available for ", enemy_name, ": ", loot_available)
+	print(ManagerLoot.ref.get_instance_id())
+	if quantity <= 0:
+		print("  Quantity is 0 or less, returning false")
+		return false
 	
-	if quantity > get_loot(enemy_name) : return false
-	
+	if quantity > get_loot(enemy_name):
+		print("  Not enough loot (", loot_available, ") for quantity (", quantity, "), returning false")
+		return false
+	print("  Enough loot, returning true")
 	return true
 
 func spend_loot(enemy_name: String, quantity : int) -> Error:
