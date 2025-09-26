@@ -100,7 +100,7 @@ func _on_request_completed(result: int, _response_code: int, headers: PackedStri
 	elif current_request_type == "create account":
 		var create_success : bool = typeof(response_dict) == TYPE_DICTIONARY and response_dict.has("id")
 		if create_success:
-			ManagerLogin.ref.show_feedback("Account created successfully. You may now login.")
+			ManagerLogin.ref.show_feedback("Account created successfully.\nPlease login, press start, close the game and relog in to start playing.\nThis is a current work around for not saving to the server on first log in.")
 
 func upload_save(json: String, save_id: String) -> void:
 	var url : String
