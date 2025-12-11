@@ -1,6 +1,6 @@
 # 🎮 A Clicker Game – Client
 
-Frontend client for **A Clicker Game**. 
+Frontend client for **A Clicker Game server**. 
 
 This client can run **standalone** (without a server) or connect to a backend server for persistent storage and multiplayer features.
 
