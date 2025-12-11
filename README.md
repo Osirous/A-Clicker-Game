@@ -1,61 +1,66 @@
 # 🎮 A Clicker Game – Client
 
-Frontend client for **A Clicker Game**, which connects to the backend server for user authentication and game state management.
+Frontend client for **A Clicker Game**. 
 
-🖥 **Server Repository:**  
+This client can run **standalone** (without a server) or connect to a backend server for persistent storage and multiplayer features.
+
+🖥 **Server Repository (optional):**  
 👉 https://github.com/Osirous/A-Clicker-Game-server  
-The server must be running for the client to work.
+
+> Currently, the server connection is hardcoded to `localhost:8080`.
 
 ---
 
 # 🧩 Project Overview
 
-This repository contains the **client-side** code for A Clicker Game server.
+- Standalone mode: all game logic runs in the client; no server required.  
+- Server mode: stores player progress and handles authentication through the backend.  
+- Game mechanics: clicker-style gameplay, upgrades, and stats.  
 
-The client:
-
-- Connects to the backend server via REST API
-- Handles user login, registration, and JWT token management
-- Displays game UI and player stats
-- Plays the game (clicks, upgrades, etc.)
 ---
 
 # 📁 Project Structure
 
 A-Clicker-Game/
-├── src/ # Client source code (JavaScript/TypeScript or other engine)
-├── assets/ # Game assets (images, sounds, etc.)
-├── package.json # Node.js or frontend build config (if web)
-├── index.html # Entry point (if web)
-└── README.md
+├── src/ # Game source code
+├── assets/ # Images, sounds, etc.
+├── project.godot # Godot project file
+├── README.md
+└── ... # other engine-specific files
+
+---
 
 # 🔧 Requirements
 
-- Game Engine Godot 4+
-- Optional - Running **A Clicker Game Server** (see server repo) The game can save both locally and on a server.
+- **Godot Engine** (current project built in Godot)  
+- Optional: **A running server** (`A Clicker Game Server`) if you want to use server features.
 
-▶️ Running the Client
+---
 
-Open the project in Godot
+# 🔌 Server Connection (Optional)
 
-Build or run the client inside the editor
+If you want the client to connect to a backend server:
 
-🧪 Testing
+1. Clone and start the server:  
+   https://github.com/Osirous/A-Clicker-Game-server
+2. Ensure the server is running on `localhost:8080`.
+3. The client will automatically use this address.  
+   (Currently, the server URL is hardcoded; future updates may make it configurable.)
 
-Start the server (A Clicker Game Server)
+---
 
-Run the client
+# ▶️ Running the Client
 
-Register a new user
+1. Open the project in **Godot Engine**.  
+2. Press **Play** or build the project.  
+3. You can play in **standalone mode** or connect to the backend for server features.
 
-Login and start clicking/upgrading
+---
 
-🤝 Contributing
+# 🤝 Contributing
 
-Pull requests are welcome. Please include:
+Pull requests welcome:
 
-Bug fixes
-
-UI improvements
-
-Game mechanics enhancements
+- UI improvements  
+- Game mechanics enhancements  
+- Server integration
